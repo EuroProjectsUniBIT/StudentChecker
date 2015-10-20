@@ -1,0 +1,28 @@
+<ion-view view-title="Home">
+  <ion-content>
+    <ion-list>
+      <!-- <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
+        {{playlist.title}} <i class="ion-ionic"></i>
+      </ion-item> -->
+
+        <div  ng-repeat="check in checkins" class="card">
+          <div class="item item-divider">
+            <!-- Искуствен Интелект -->
+            {{check.title}}
+          </div>
+          <div class="item item-text-wrap">
+            <!-- Дата : 22.10.2015 от 15:30 до 17:30 -->
+            Дата : {{check.date}} от {{check.from}} до {{check.to}}
+          </div>
+          <div class="item item-divider">
+            Присъствие отчетено на {{check.checkTime}}
+            <!-- Присъствие отчетено на 22.10.2015 15:28:30 -->
+          </div>
+        </div>
+
+
+
+
+    </ion-list>
+  </ion-content>
+</ion-view>
