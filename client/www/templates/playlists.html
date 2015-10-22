@@ -5,24 +5,37 @@
         {{playlist.title}} <i class="ion-ionic"></i>
       </ion-item> -->
 
-        <div  ng-repeat="check in checkins" class="card">
-          <div class="item item-divider">
-            <!-- Искуствен Интелект -->
-            {{check.title}}
-          </div>
-          <div class="item item-text-wrap">
-            <!-- Дата : 22.10.2015 от 15:30 до 17:30 -->
-            Дата : {{check.date}} от {{check.from}} до {{check.to}}
-          </div>
-          <div class="item item-divider">
-            Присъствие отчетено на {{check.checkTime}}
-            <!-- Присъствие отчетено на 22.10.2015 15:28:30 -->
-          </div>
+      <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+        <div class="buttons">
+          <button class="button button-icon icon ion-ios-minus-outline"
+            ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
         </div>
+        <ion-item ng-repeat="item in items"
+                  item="item"
+                  href="#/item/{{item.id}}" class="item-remove-animate">
+          Item {{ item.id }}
+          <ion-delete-button class="ion-minus-circled"
+                             ng-click="onItemDelete(item)">
+          </ion-delete-button>
+          <ion-option-button class="button-assertive"
+                             ng-click="edit(item)">
+            Edit
+          </ion-option-button>
+          <ion-option-button class="button-calm"
+                             ng-click="share(item)">
+            Share
+          </ion-option-button>
+          <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+        </ion-item>
 
+      </ion-list>
 
-
-
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text" placeholder="Enter number" ng-model="codeTest">
+        </label>
+        <qrcode size="200" data="{{codeTest}}"></qrcode>
+      </div>
     </ion-list>
   </ion-content>
 </ion-view>

@@ -42,26 +42,51 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistsCtrl', function($scope) {
-  $scope.checkins = [];
-  for (var i = 0; i < 10; i++) {
-    $scope.checkins.push({
-      title: 'Искуствен Интелект ' + i,
-      date: '23.10.2015',
-      from: '15:30',
-      to: '17:30',
-      checkTime: '15:28:37'
-    });
-  }
+
+  $scope.data = {
+    showDelete: false
+  };
+
+  $scope.edit = function(item) {
+    alert('Edit Item: ' + item.id);
+  };
+  $scope.share = function(item) {
+    alert('Share Item: ' + item.id);
+  };
+
+  $scope.moveItem = function(item, fromIndex, toIndex) {
+    $scope.items.splice(fromIndex, 1);
+    $scope.items.splice(toIndex, 0, item);
+  };
+
+  $scope.onItemDelete = function(item) {
+    $scope.items.splice($scope.items.indexOf(item), 1);
+  };
+  var students = [{
+    id: '1234'
+  }];
+  localStorage.setItem('students', JSON.stringify(students));
+
+  $scope.items = JSON.parse(localStorage.getItem('students'));
+
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {})
+.controller('PlaylistCtrl', function($scope, $stateParams) {
+
+  })
   .controller('BarcodeCtrl', function($scope, $cordovaBarcodeScanner) {
 
     $scope.scan = function() {
       $cordovaBarcodeScanner
         .scan()
         .then(function(barcodeData) {
+          var test = JSON.parse(localStorage.getItem('students'));
+          test.push({
+            id: barcodeData.text
+          });
+          localStorage.setItem('students', JSON.stringify(test));
           alert(barcodeData.text);
+
           // Success! Barcode data is here
         }, function(error) {
           // An error occurred
