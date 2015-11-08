@@ -10,10 +10,10 @@
           <button class="button button-icon icon ion-ios-minus-outline"
             ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
         </div>
-        <ion-item ng-repeat="item in items"
+        <ion-item ng-repeat="item in studentsList.$$state.value"
                   item="item"
                   href="#/item/{{item.id}}" class="item-remove-animate">
-          Item {{ item.id }}
+          Item {{ item.studentID }}
           <ion-delete-button class="ion-minus-circled"
                              ng-click="onItemDelete(item)">
           </ion-delete-button>

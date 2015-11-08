@@ -6,9 +6,10 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', [
   'ionic',
-  'ngCordova' ,
+  'ngCordova',
   'monospaced.qrcode',
-  'starter.controllers'])
+  'starter.controllers'
+])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -36,42 +37,44 @@ angular.module('starter', [
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+  // .state('app.search', {
+  //   url: '/search',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: 'templates/search.html'
+  //     }
+  //   }
+  // })
+
+  .state('app.check', {
+    url: '/check',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/check.html',
+        controller: 'BarcodeCtrl'
       }
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
-
-  .state('app.single', {
-    url: '/playlists/:playlistId',
+  .state('app.checkins', {
+    url: '/checkins',
     views: {
       'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+        templateUrl: 'templates/checkins.html',
+        controller: 'CheckinsCtrl'
       }
     }
   });
+
+  // .state('app.single', {
+  //   url: '/playlists/:playlistId',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: 'templates/playlist.html',
+  //       controller: 'PlaylistCtrl'
+  //     }
+  //   }
+  // });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/checkins');
 });

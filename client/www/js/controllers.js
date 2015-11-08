@@ -29,6 +29,8 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
+
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
@@ -41,56 +43,26 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-
-  $scope.data = {
-    showDelete: false
-  };
-
-  $scope.edit = function(item) {
-    alert('Edit Item: ' + item.id);
-  };
-  $scope.share = function(item) {
-    alert('Share Item: ' + item.id);
-  };
-
-  $scope.moveItem = function(item, fromIndex, toIndex) {
-    $scope.items.splice(fromIndex, 1);
-    $scope.items.splice(toIndex, 0, item);
-  };
-
-  $scope.onItemDelete = function(item) {
-    $scope.items.splice($scope.items.indexOf(item), 1);
-  };
-  var students = [{
-    id: '1234'
-  }];
-  localStorage.setItem('students', JSON.stringify(students));
-
-  $scope.items = JSON.parse(localStorage.getItem('students'));
-
-})
-
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 
-  })
-  .controller('BarcodeCtrl', function($scope, $cordovaBarcodeScanner) {
-
-    $scope.scan = function() {
-      $cordovaBarcodeScanner
-        .scan()
-        .then(function(barcodeData) {
-          var test = JSON.parse(localStorage.getItem('students'));
-          test.push({
-            id: barcodeData.text
-          });
-          localStorage.setItem('students', JSON.stringify(test));
-          alert(barcodeData.text);
-
-          // Success! Barcode data is here
-        }, function(error) {
-          // An error occurred
-        });
-    };
-
-  });
+});
+// .controller('BarcodeCtrl', function($scope, $cordovaBarcodeScanner) {
+//
+//     $scope.scan = function() {
+//       $cordovaBarcodeScanner
+//         .scan()
+//         .then(function(barcodeData) {
+//           var test = JSON.parse(localStorage.getItem('students'));
+//           test.push({
+//             id: barcodeData.text
+//           });
+//           localStorage.setItem('students', JSON.stringify(test));
+//           alert(barcodeData.text);
+//
+//           // Success! Barcode data is here
+//         }, function(error) {
+//           // An error occurred
+//         });
+//     };
+//
+//   });
